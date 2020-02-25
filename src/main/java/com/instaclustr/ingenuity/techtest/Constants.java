@@ -6,7 +6,14 @@ package com.instaclustr.ingenuity.techtest;
  * @author  Sureshraja
  * @version 1.0
  * @see {@link NumberGenerator } {@link NumberProcessor} {@link Runner}
+ *
+ * Design Explanation:
+ * =====================
+ * * Created a Final Class to have all the application constants.
+ * Declared this class as final class it to prevent the class from being subclassed and marked all the constants as final.
+ *
  */
+
 
 
 public final class Constants {

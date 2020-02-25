@@ -9,11 +9,24 @@ import java.util.stream.IntStream;
  * @author  Sureshraja
  * @version 1.0
  * @see {@link NumberGenerator } & {@link NumberProcessor}
+ *
+ *  Design Explanation:
+ *  =====================
+ *  Runner is the stating point of the exceution of this application.
+ *
+ *  Used the ArrayBlockingQueue as a queue instance to store the values of a specific type. Our case its Byte so that the retrival of the
+ *  values from the queue and performing computation on the queue value is very efficient since we are dealing with numbers.
+ *
+ *  Reson for using Blocking queue is to have the other process blocked once the queue is full.
+ *
+ *  Created a beginProcess() to begin the operation to get the number of threads to create value from user to proceed the NumberGenerator task with the nummber of threads
+ *
+ *  As per the requirment, many threads are created in createGenerators() and only one Procesor is created in createProcessors()
  */
 
 public class Runner {
 
-    ArrayBlockingQueue<Integer> sharedQueue = new ArrayBlockingQueue<Integer>(Constants.MAX_QUEUE_LEN); //Creating shared object
+    ArrayBlockingQueue<Byte> sharedQueue = new ArrayBlockingQueue<>(Constants.MAX_QUEUE_LEN); //Creating shared object
 
     public static void main(String args[]) {
         new Runner().beginProcess();
@@ -28,7 +41,7 @@ public class Runner {
         createProcessors(sharedQueue);
     }
 
-    private void createGenerators(ArrayBlockingQueue<Integer> sharedQueue, int noOfThreads) {
+    private void createGenerators(ArrayBlockingQueue<Byte> sharedQueue, int noOfThreads) {
         IntStream.rangeClosed(1, noOfThreads).forEach(i -> {
             NumberGenerator generator = new NumberGenerator(sharedQueue);
             Thread producerThread1 = new Thread(generator, "Generator_" + i);
@@ -37,7 +50,7 @@ public class Runner {
         });
     }
 
-    private void createProcessors(ArrayBlockingQueue<Integer> sharedQueue) {
+    private void createProcessors(ArrayBlockingQueue<Byte> sharedQueue) {
         NumberProcessor resultProcessor = new NumberProcessor(sharedQueue);
         Thread consumerThread0 = new Thread(resultProcessor, "Processor");
         consumerThread0.start();

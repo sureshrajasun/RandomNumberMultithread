@@ -24,7 +24,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  *  while (sharedQueue.size() == Constants.MAX_QUEUE_LEN) {
  *      sharedQueue.wait();
  *  }
- *
+ *  sharedQueue.notify();
  *
  */
 

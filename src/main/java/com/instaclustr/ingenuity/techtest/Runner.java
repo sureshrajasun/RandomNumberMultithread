@@ -15,7 +15,7 @@ import java.util.stream.IntStream;
  *  Runner is the stating point of the exceution of this application.
  *
  *  Used the ArrayBlockingQueue as a queue instance to store the values of a specific type. Our case its Byte so that the retrival of the
- *  values from the queue and performing computation on the queue value is very efficient since we are dealing with numbers.
+ *  number values from the queue and performing computation on the number values are very efficient since we are dealing with numbers.
  *
  *  Reson for using Blocking queue is to have the other process blocked once the queue is full.
  *
@@ -55,6 +55,4 @@ public class Runner {
         Thread consumerThread0 = new Thread(resultProcessor, "Processor");
         consumerThread0.start();
     }
-
-
 }

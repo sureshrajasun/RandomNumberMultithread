@@ -26,7 +26,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  *      sharedQueue.notify();
  * }
  *
- *  Ints from Google's Guava used to get the minimum and maximum value of the queue.
+ *  Ints from Google's Guava used to get the minimum and maximum value of the queue. It eases lot of effort for the computation.
  *
  */
 
